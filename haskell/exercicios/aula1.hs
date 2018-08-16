@@ -16,8 +16,8 @@ soma_par (x:xs)
 
 -- soma elementos posicoes pares
 soma_pos_par [] = 0
-soma_pos_par [x] = x
-soma_pos_par (x:xs) = x + (soma_pos_par (tail xs))
+soma_pos_par [x] = 0
+soma_pos_par (x:xs) = (head xs) + (soma_pos_par (tail xs))
 
 -- existe item lista
 existe item [] = False
@@ -71,13 +71,32 @@ ordenada (x:y:xs) = x <= y && ordenada (y:xs)
 gera_lista 0 = []
 gera_lista x = gera_lista (x-1) ++ [x]
 
+-- ultimo elemento lista
+ultimo [] = error "empty list"
+ultimo [x] = x
+ultimo (x:xs) = ultimo xs
+
+-- lista sem ultimo
+inicio [] = []
+inicio [x] = []
+inicio (x:xs) = x : inicio xs
+
 -- shift right
 shiftr [] = []
-shiftr x = last x : init x
+shiftr [x] = [x]
+shiftr (x:xs) = head (shiftr xs) : x : tail (shiftr xs)
+
+-- shift right n vezes
+shiftr_n 0 x = x
+shiftr_n n x = shiftr_n (n-1) (shiftr x)
 
 -- shift left
 shiftl [] = []
 shiftl (x:xs) = xs ++ [x]
+
+-- shift left n vezes
+shiftl_n 0 x = x
+shiftl_n n x = shiftl_n (n-1) (shiftl x)
 
 -- remove item 1 vez
 remove1 item [] = []
