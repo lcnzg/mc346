@@ -40,7 +40,7 @@ repete item (x:xs)
   | otherwise = repete item xs
 
 -- maior elemento lista
-maior [] = 0
+maior [] = error "empty list"
 maior [x] = x
 maior (x:xs)
   | x >= maior xs = x
