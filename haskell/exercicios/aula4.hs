@@ -61,7 +61,7 @@ remove (No a esq dir) x
 remove_raiz :: (Ord a) => Tree a -> Tree a
 remove_raiz (No a Vazia dir) = dir
 remove_raiz (No a esq Vazia) = esq
-remove_raiz (No a esq dir) = (No v esq dir)
+remove_raiz (No a esq dir) = (No v esq (remove dir v))
   where
     v = mais_esq dir
 
