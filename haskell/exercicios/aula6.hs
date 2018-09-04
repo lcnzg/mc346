@@ -68,7 +68,13 @@ troca velho novo lista = map (\ x -> if x==velho then novo else x) lista
 -- troca velho por novo n vezes ?
 
 -- transposta da matriz formada com listas de linhas
--- transposta
+transposta ([]:_) = []
+transposta mat = col1 : (transposta restmat)
+  where col1 = map head mat
+        restmat = map tail mat
 
 -- multiplica 2 matrizes
--- matmul
+matmul m1 m2 = matmul' m1 (transposta m2)
+  where matmul' [] _ = [[]]
+        matmul' (lin:r) m2 = (map (\l -> dotprod l lin) m2) : (matmul' r m2)
+        dotprod l1 l2 = sum $ zipWith (*) l1 l2
