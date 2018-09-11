@@ -11,6 +11,7 @@ soma_lista lista = foldl (+) 0 lista
 soma_par lista = foldl (+) 0 (filter (\ x -> x `mod` 2 == 0) lista)
 
 -- soma elementos posicoes pares ?
+soma_pos_par l = foldl (\acc (x,y) -> if mod x 2 == 0 then acc+y else acc) 0 $ zip [1..length l] l
 
 -- existe item lista
 existe item lista = foldr (\ x bool -> (x==item) || bool) False lista
